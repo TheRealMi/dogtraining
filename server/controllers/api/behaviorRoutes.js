@@ -5,10 +5,10 @@ const withAuth = require('../../utils/auth');
 // Route to get all behaviors for a specific pet
 router.get('/:pet_id', async (req, res) => {
     try {
-        const behaviors = await Pet.findAll({
-            include: [{ model: Behavior }],
+        const behaviors = await Behavior.findAll({
+            include: [{ model: Pet }],
             where: {
-                id: req.params.pet_id
+                pet_id: req.params.pet_id
             }
         });
         res.status(200).json(behaviors);

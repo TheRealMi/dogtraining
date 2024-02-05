@@ -1,18 +1,33 @@
 {
-  "name": "tech-matchup-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server/server.js",
+  "name": "dogtraining",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "node server/server.js --ignore dogtraining",
-    "develop": "concurrently \"cd server && npm run watch\" \"cd dogtraining && npm run dev\"",
-    "install": "cd server && npm i && cd ../dogtraining && npm i",
-    "seed": "cd server && npm run seed",
-    "build": "cd dogtraining && npm run build"
+    "dev": "vite",
+    "start": "concurrently \"cd server && npm run watch\" \"cd dogtraining && npm run dev\"",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "seed": "cd server && npm run seed"
   },
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "@apollo/client": "^3.8.10",
+    "bootstrap": "^5.3.2",
+    "bulma": "^0.9.4",
+    "nodemon": "^3.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0"
+  },
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "vite": "^5.0.8"
   }
 }
