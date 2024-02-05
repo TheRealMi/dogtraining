@@ -1,6 +1,24 @@
-import './login.css'
+import './login.css';
+import {useState} from "react";
+import Api from "../../utils/api";
 
 function Login() {
+    const [formState, setFormState] = useState({
+        username: "",
+        password: ""
+    })
+    function handleSubmit (event) {
+        event.preventDefault();
+        Api.login(formState)
+        .then (response => {
+            if (response.ok) {
+                window.location.replace("/profile")
+            }
+            else {
+                window.alert("Invalid Login")
+            }
+        })
+    }
     return (
         <>
         <section class="hero">
@@ -15,7 +33,7 @@ function Login() {
 
     <div class="container">
         <div class="columns is-centered">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div class="column is-12">
                     <div class="field has-addons">
                         <div class="control is-expanded">
@@ -24,7 +42,7 @@ function Login() {
                             </a>
                         </div>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Username"/> 
+                            <input name="username" value={formState.username} class="input" type="text" placeholder="Username" onChange={(event)=>setFormState({ ...formState, username: event.target.value})}/> 
                         </div>
                     </div>
                 </div>
@@ -36,7 +54,7 @@ function Login() {
                             </a>
                         </div>
                         <div class="control">
-                            <input class="input" type="password" placeholder="Password"/> 
+                            <input name="password" value={formState.password} class="input" type="password" placeholder="Password" onChange={(event)=>setFormState({...formState, password: event.target.value})}/> 
                         </div>
                     </div>
                 </div>
