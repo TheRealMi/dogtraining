@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Pet, Behavior, User, Training } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// Route to get all training logs for a specific behavior
+// Route to get all pets for the current user
 router.get('/', withAuth, async (req, res) => {
     try {
       const allPets = await Pet.findAll({
@@ -18,7 +18,7 @@ router.get('/', withAuth, async (req, res) => {
     }
   });
 
-// Route to create a new training log for a specific behavior
+// Route to create a new pet for the current user
 router.post('/', withAuth, async (req, res) => {
     try {
       const newPet = await Pet.create({

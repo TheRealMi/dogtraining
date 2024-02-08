@@ -7,7 +7,7 @@ router.post('/', async (req, res) => {
         const userData = await User.create(req.body);
         console.log(userData);
         const petData = await Pet.create({
-          name: req.body.pet_name,
+          name: req.body.name,
           breed: req.body.breed,
           user_id: userData.id
         })
